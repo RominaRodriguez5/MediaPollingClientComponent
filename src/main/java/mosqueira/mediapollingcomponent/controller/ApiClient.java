@@ -19,6 +19,9 @@ import java.util.List;
 import java.util.Map;
 import mosqueira.mediapollingcomponent.model.Media;
 import mosqueira.mediapollingcomponent.model.Usuari;
+import tools.jackson.core.type.TypeReference;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
 
 /**
  *
