@@ -3,6 +3,7 @@ package mosqueira.mediapollingcomponent.component;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -192,5 +193,41 @@ public class MediaPollingComponent extends JPanel implements Serializable, Actio
         }
 
         lastChecked = fechaAhora;
+    }
+    
+    //Wrappers de ApiClient
+    public String login(String user,String pass)throws Exception{
+        if(apiClient ==null){
+           apiClient=new ApiClient(apiUrl);
+        }
+        return apiClient.login(user, pass);
+    }
+    
+    public String getNickName(int id,String token)throws Exception{
+       if(apiClient==null){
+           apiClient=new ApiClient(apiUrl);
+       }
+       return apiClient.getNickName(id,token);
+    }
+    
+    public List<Media> getAllMedia(String token)throws Exception{
+        if(apiClient==null){
+            apiClient=new ApiClient(apiUrl);
+        }
+        return apiClient.getAllMedia(token);
+    }
+    
+    public void download(int id,File destFile, String token)throws Exception{
+        if(apiClient==null){
+            apiClient=new ApiClient(apiUrl);
+        }
+        apiClient.download(id, destFile, token);
+    }
+    
+    public String uploadFileMulti(File file, String downloadedFromUrl,String token)throws Exception{
+        if(apiClient==null){
+           apiClient=new ApiClient(apiUrl);
+        }
+        return apiClient.uploadFileMultipart(file, downloadedFromUrl, token);
     }
 }
