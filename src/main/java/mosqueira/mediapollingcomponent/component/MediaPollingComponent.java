@@ -4,14 +4,16 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import mosqueira.mediapollingcomponent.MediaPollingListener;
 import mosqueira.mediapollingcomponent.controller.ApiClient;
+
+import mosqueira.mediapollingcomponent.model.Media;
 
 /**
  *
@@ -36,7 +38,6 @@ public class MediaPollingComponent extends JPanel implements Serializable, Actio
         listeners = new ArrayList<>();
         running = false;
         lastChecked = null;
-
     }
 
     public String getApiUrl() {
@@ -138,8 +139,58 @@ public class MediaPollingComponent extends JPanel implements Serializable, Actio
         }
     }
 
+    public void addMediaPollingListener(MediaPollingListener l) {
+        listeners.add(l);
+    }
+
+    public void fireNewMediaEvent(MediaPollingEvent e) {
+        for (MediaPollingListener l : listeners) {
+            l.onNewMediaDetected(e);
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (!running) {
+            System.out.println("MediaPollingComponent: running = false, no se realiza polling.");
+            return;
+        }
+
+        if (token == null || token.trim().isEmpty()) {
+            System.out.println("MediaPollingComponent: token no configurado, no se realiza polling.");
+            return;
+        }
+        if (apiUrl == null || apiUrl.trim().isEmpty()) {
+            System.out.println("MediaPollingComponent: apiUrl no configurada, no se llama a la API.");
+            return;
+        }
+
+        if (apiClient == null) {
+            System.out.println("MediaPollingComponent: creando nuevo ApiClient con apiUrl = " + apiUrl);
+            apiClient = new ApiClient(apiUrl);
+        }
+        String fechaAhora = OffsetDateTime.now().toString();
+
+        if (lastChecked == null) {
+            System.out.println("MediaPollingComponent: primera ejecución, inicializando lastChecked = " + fechaAhora);
+            lastChecked = fechaAhora;
+            return;
+        }
+
+        try {
+            List<Media> newMedia = apiClient.getMediaAddedSince(lastChecked, token);
+
+            if (!newMedia.isEmpty()) {
+                MediaPollingEvent event = new MediaPollingEvent(newMedia, fechaAhora);
+                System.out.println("MediaPollingComponent: respuesta recibida, nuevos elementos = " + newMedia.size());
+                fireNewMediaEvent(event);
+            }
+
+        } catch (Exception ex) {
+            System.out.println("MediaPollingComponent: error al consultar la API:");
+            ex.printStackTrace();
+        }
+
+        lastChecked = fechaAhora;
     }
 }

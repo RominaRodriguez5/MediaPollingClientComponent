@@ -1,6 +1,5 @@
 package mosqueira.mediapollingcomponent.component;
 
-import mosqueira.mediapollingcomponent.MediaPollingEvent;
 
 /**
  *
