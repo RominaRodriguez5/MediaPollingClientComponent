@@ -7,11 +7,11 @@ import java.util.List;
  *
  * @author Lulas
  */
-public class MediaPollingEvent {
+public class MediaPollingClientEvent {
     private List<Media> newMedia;
     private String dateEvent;
     
-    public MediaPollingEvent(List<Media> newMedia,String dateEvent){
+    public MediaPollingClientEvent(List<Media> newMedia,String dateEvent){
         this.newMedia=newMedia;
         this.dateEvent=dateEvent;
     }

@@ -19,7 +19,7 @@ import mosqueira.mediaPollingClientComponent.model.Media;
  *
  * @author Lulas
  */
-public class MediaPollingComponent extends JPanel implements Serializable, ActionListener {
+public class MediaPollingClientComponent extends JPanel implements Serializable, ActionListener {
 
     private ApiClient apiClient;
     private String apiUrl;
@@ -27,11 +27,11 @@ public class MediaPollingComponent extends JPanel implements Serializable, Actio
     private String token;
     private String lastChecked;
     private JLabel iconLabel;
-    private List<MediaPollingListener> listeners;
+    private List<MediaPollingClientListener> listeners;
     private Timer restartTimer;
     private boolean running;
 
-    public MediaPollingComponent() {
+    public MediaPollingClientComponent() {
         setLayout(new BorderLayout());
         iconLabel = new JLabel(new ImageIcon(getClass().getResource("/image/update.png")));
         add(iconLabel, BorderLayout.CENTER);
@@ -102,11 +102,11 @@ public class MediaPollingComponent extends JPanel implements Serializable, Actio
         this.iconLabel = iconLabel;
     }
 
-    public List<MediaPollingListener> getListeners() {
+    public List<MediaPollingClientListener> getListeners() {
         return listeners;
     }
 
-    public void setListeners(List<MediaPollingListener> listeners) {
+    public void setListeners(List<MediaPollingClientListener> listeners) {
         this.listeners = listeners;
     }
 
@@ -140,12 +140,12 @@ public class MediaPollingComponent extends JPanel implements Serializable, Actio
         }
     }
 
-    public void addMediaPollingListener(MediaPollingListener l) {
+    public void addMediaPollingListener(MediaPollingClientListener l) {
         listeners.add(l);
     }
 
-    public void fireNewMediaEvent(MediaPollingEvent e) {
-        for (MediaPollingListener l : listeners) {
+    public void fireNewMediaEvent(MediaPollingClientEvent e) {
+        for (MediaPollingClientListener l : listeners) {
             l.onNewMediaDetected(e);
         }
     }
@@ -182,7 +182,7 @@ public class MediaPollingComponent extends JPanel implements Serializable, Actio
             List<Media> newMedia = apiClient.getMediaAddedSince(lastChecked, token);
 
             if (!newMedia.isEmpty()) {
-                MediaPollingEvent event = new MediaPollingEvent(newMedia, fechaAhora);
+                MediaPollingClientEvent event = new MediaPollingClientEvent(newMedia, fechaAhora);
                 System.out.println("MediaPollingComponent: respuesta recibida, nuevos elementos = " + newMedia.size());
                 fireNewMediaEvent(event);
             }
