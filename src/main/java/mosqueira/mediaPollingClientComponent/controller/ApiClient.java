@@ -1,4 +1,4 @@
-package mosqueira.mediapollingcomponent.controller;
+package mosqueira.mediaPollingClientComponent.controller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import mosqueira.mediapollingcomponent.model.Media;
-import mosqueira.mediapollingcomponent.model.Usuari;
+import mosqueira.mediaPollingClientComponent.model.Media;
+import mosqueira.mediaPollingClientComponent.model.Usuari;
 import tools.jackson.core.type.TypeReference;
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.ObjectMapper;

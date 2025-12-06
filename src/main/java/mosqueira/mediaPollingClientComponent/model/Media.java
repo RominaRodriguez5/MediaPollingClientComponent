@@ -1,5 +1,5 @@
 
-package mosqueira.mediapollingcomponent.model;
+package mosqueira.mediaPollingClientComponent.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

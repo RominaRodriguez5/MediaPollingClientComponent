@@ -1,4 +1,4 @@
-package mosqueira.mediapollingcomponent.component;
+package mosqueira.mediaPollingClientComponent.component;
 
 
 /**

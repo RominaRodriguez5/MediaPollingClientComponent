@@ -1,5 +1,5 @@
-package mosqueira.mediapollingcomponent.component;
-import mosqueira.mediapollingcomponent.model.Media;
+package mosqueira.mediaPollingClientComponent.component;
+import mosqueira.mediaPollingClientComponent.model.Media;
 import java.util.List;
 
 

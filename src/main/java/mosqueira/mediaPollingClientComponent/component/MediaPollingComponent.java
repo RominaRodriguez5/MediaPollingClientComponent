@@ -1,4 +1,4 @@
-package mosqueira.mediapollingcomponent.component;
+package mosqueira.mediaPollingClientComponent.component;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -12,9 +12,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import mosqueira.mediapollingcomponent.controller.ApiClient;
-
-import mosqueira.mediapollingcomponent.model.Media;
+import mosqueira.mediaPollingClientComponent.controller.ApiClient;
+import mosqueira.mediaPollingClientComponent.model.Media;
 
 /**
  *
@@ -37,6 +36,7 @@ public class MediaPollingComponent extends JPanel implements Serializable, Actio
         iconLabel = new JLabel(new ImageIcon(getClass().getResource("/image/update.png")));
         add(iconLabel, BorderLayout.CENTER);
         listeners = new ArrayList<>();
+        restartTimer=new Timer(pollingInterval,this);
         running = false;
         lastChecked = null;
     }
