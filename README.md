@@ -48,7 +48,7 @@ import mosqueira.mediapollingcomponent.model.Media;
 MediaPollingComponent mediaPollingComponent = new MediaPollingComponent();
 
 // Configuración básica del componente
-mediaPollingComponent.setApiUrl("https://dimedianetapi9.azurewebsites.net");
+mediaPollingComponent.setApiUrl("url....");
 mediaPollingComponent.setPollingInterval(5);   // cada 5 segundos
 mediaPollingComponent.setToken(tokenValido);   // tu token JWT
 mediaPollingComponent.setRunning(true);        // empieza el polling
