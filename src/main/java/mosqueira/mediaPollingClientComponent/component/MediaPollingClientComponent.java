@@ -33,7 +33,7 @@ public class MediaPollingClientComponent extends JPanel implements Serializable,
 
     public MediaPollingClientComponent() {
         setLayout(new BorderLayout());
-        iconLabel = new JLabel(new ImageIcon(getClass().getResource("/image/update.png")));
+        iconLabel = new JLabel(new ImageIcon(getClass().getResource("/image/up.png")));
         add(iconLabel, BorderLayout.CENTER);
         listeners = new ArrayList<>();
         restartTimer=new Timer(pollingInterval,this);
@@ -183,7 +183,7 @@ public class MediaPollingClientComponent extends JPanel implements Serializable,
 
             if (!newMedia.isEmpty()) {
                 MediaPollingClientEvent event = new MediaPollingClientEvent(newMedia, fechaAhora);
-                System.out.println("MediaPollingComponent: respuesta recibida, nuevos elementos = " + newMedia.size());
+                System.out.println("MediaPollingComponent: respuesta recibida, nuevos elementos = " + newMedia);
                 fireNewMediaEvent(event);
             }
 
