@@ -34,9 +34,9 @@ A partir de aquí ya puedes importar y usar las clases de mi componente.
 ## 3. Importar mi componente en tu código
 
 ```java
-import mosqueira.mediapollingcomponent.component.MediaPollingComponent;
-import mosqueira.mediapollingcomponent.MediaPollingListener;
-import mosqueira.mediapollingcomponent.MediaPollingEvent;
+import mosqueira.mediapollingcomponent.component.MediaPollingClientComponent;
+import mosqueira.mediapollingcomponent.MediaPollingClientListener;
+import mosqueira.mediapollingcomponent.MediaPollingClientEvent;
 import mosqueira.mediapollingcomponent.model.Media;
 ```
 ## 4. Uso básico del componente
@@ -44,7 +44,7 @@ import mosqueira.mediapollingcomponent.model.Media;
 ### 4.1. Crear y configurar el componente
 
 ```java
-MediaPollingComponent mediaPollingComponent = new MediaPollingComponent();
+MediaPollingClientComponent mediaPollingClientComponent = new MediaPollingClientComponent();
 
 // Configuración básica del componente
 mediaPollingComponent.setApiUrl("url....");
@@ -53,13 +53,13 @@ mediaPollingComponent.setToken(tokenValido);   // tu token JWT
 mediaPollingComponent.setRunning(true);        // empieza el polling
 ```
 
-## 5. Eventos: MediaPollingListener
+## 5. Eventos: MediaPollingClientListener
 
-El componente utiliza la interfaz MediaPollingListener para notificar cuando se detectan nuevos archivos en la red Media.
+El componente utiliza la interfaz MediaPollingClientListener para notificar cuando se detectan nuevos archivos en la red Media.
 ```java
-mediaPollingComponent.addMediaPollingListener(new MediaPollingListener() {
+mediaPollingClientComponent.addMediaPollingClientListener(new MediaPollingListener() {
     @Override
-    public void onNewMediaDetected(MediaPollingEvent event) {
+    public void onNewMediaDetected(MediaPollingClientEvent event) {
         System.out.println("Nuevos medios detectados en: " + event.getDateEvent());
         for (Media m : event.getNewMedia()) {
             System.out.println(" - " + m.getFileName());
