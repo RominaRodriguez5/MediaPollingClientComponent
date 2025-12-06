@@ -34,10 +34,10 @@ A partir de aquí ya puedes importar y usar las clases de mi componente.
 ## 3. Importar mi componente en tu código
 
 ```java
-import mosqueira.mediapollingcomponent.component.MediaPollingClientComponent;
-import mosqueira.mediapollingcomponent.MediaPollingClientListener;
-import mosqueira.mediapollingcomponent.MediaPollingClientEvent;
-import mosqueira.mediapollingcomponent.model.Media;
+import mosqueira.mediapollingClientcomponent.component.MediaPollingClientComponent;
+import mosqueira.mediapollingClientcomponent.MediaPollingClientListener;
+import mosqueira.mediapollingClientcomponent.MediaPollingClientEvent;
+import mosqueira.mediapollingClientcomponent.model.Media;
 ```
 ## 4. Uso básico del componente
 
@@ -47,10 +47,10 @@ import mosqueira.mediapollingcomponent.model.Media;
 MediaPollingClientComponent mediaPollingClientComponent = new MediaPollingClientComponent();
 
 // Configuración básica del componente
-mediaPollingComponent.setApiUrl("url....");
-mediaPollingComponent.setPollingInterval(5);   // cada 5 segundos
-mediaPollingComponent.setToken(tokenValido);   // tu token JWT
-mediaPollingComponent.setRunning(true);        // empieza el polling
+mediaPollingClientComponent.setApiUrl("url....");
+mediaPollingClientComponent.setPollingInterval(5);   // cada 5 segundos
+mediaPollingClientComponent.setToken(tokenValido);   // tu token JWT
+mediaPollingClientComponent.setRunning(true);        // empieza el polling
 ```
 
 ## 5. Eventos: MediaPollingClientListener
