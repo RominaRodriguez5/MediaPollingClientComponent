@@ -16,9 +16,8 @@ Para usar el componente en un proyecto puedes usar directamente el JAR publicado
 2. Ve a la pestaña **Releases**.
 3. Descarga el archivo JAR, por ejemplo:  
    `MediaPollingClientComponent-1.0-SNAPSHOT.jar`  
-   (el nombre exacto puede variar según la versión).
 
-Guárdalo en alguna carpeta de tu elección (por ejemplo, dentro de una carpeta `libs` en tu proyecto).
+Guárdalo en alguna carpeta de tu elección.
 
 ---
 
