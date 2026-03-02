@@ -33,14 +33,14 @@ public class MediaPollingClientComponent extends JPanel implements Serializable,
 
     public MediaPollingClientComponent() {
         setLayout(new BorderLayout());
-        iconLabel = new JLabel(new ImageIcon(getClass().getResource("/image/up.png")));
+        iconLabel = new JLabel(new ImageIcon(getClass().getResource("/image/update.png")));
         add(iconLabel, BorderLayout.CENTER);
         listeners = new ArrayList<>();
         restartTimer=new Timer(pollingInterval,this);
         running = false;
-        lastChecked = null;
+        
     }
-
+    
     public String getApiUrl() {
         return apiUrl;
     }
@@ -91,7 +91,11 @@ public class MediaPollingClientComponent extends JPanel implements Serializable,
     }
 
     public void setLastChecked(String lastChecked) {
+        if (lastChecked == null || lastChecked.isBlank()) {
+        this.lastChecked = null;
+    } else {
         this.lastChecked = lastChecked;
+    }
     }
 
     public JLabel getIconLabel() {
@@ -172,7 +176,7 @@ public class MediaPollingClientComponent extends JPanel implements Serializable,
         }
         String fechaAhora = OffsetDateTime.now().toString();
 
-        if (lastChecked == null) {
+        if (lastChecked == null || lastChecked.isBlank()) {
             System.out.println("MediaPollingComponent: primera ejecución, inicializando lastChecked = " + fechaAhora);
             lastChecked = fechaAhora;
             return;
